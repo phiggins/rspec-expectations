@@ -4,7 +4,7 @@ module RSpec
   module Matchers
     describe "expect(actual).to be_close(expected, delta)" do
       before(:each) do
-        RSpec.stub(:warn)
+        RSpec.stub(:warn_deprecation)
       end
 
       it "delegates to be_within(delta).of(expected)" do
@@ -14,7 +14,7 @@ module RSpec
       end
 
       it "prints a deprecation warning" do
-        RSpec.should_receive(:warn).with(/use be_within.*instead/)
+        RSpec.should_receive(:warn_deprecation).with(/use be_within.*instead/)
         be_close(3.0, 0.5)
       end
     end
